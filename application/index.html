@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Manage your student tasks in one place." />
+  <title>Student Task Manager</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">ST</div>
+      <div>
+        <h1>Student Task Manager</h1>
+        <p>Plan your work. Achieve your goals.</p>
+      </div>
+    </div>
+    <span class="cloud-badge">Cloud Powered</span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+        <h2>Stay on top of your tasks.</h2>
+        <p class="muted">Organize assignments, projects and daily study goals.</p>
+      </div>
+      <div class="welcome-icon">✓</div>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card">
+        <span>Total Tasks</span>
+        <strong id="totalCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Pending</span>
+        <strong id="pendingCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>In Progress</span>
+        <strong id="progressCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Completed</span>
+        <strong id="completedCount">0</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2 id="formHeading">Create a task</h2>
+          <p class="muted">Add the details of your next task.</p>
+        </div>
+      </div>
+
+      <form id="taskForm">
+        <label for="title">Task title *</label>
+        <input id="title" name="title" type="text"
+          placeholder="e.g. Complete Cloud Computing assignment"
+          maxlength="200" required />
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="3"
+          placeholder="Add any notes or details..."></textarea>
+
+        <label for="priority">Priority</label>
+        <select id="priority" name="priority">
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+
+        <div class="form-actions">
+          <button type="submit" id="submitButton">+ Add Task</button>
+          <button type="button" id="cancelEdit" class="secondary hidden">
+            Cancel Edit
+          </button>
+        </div>
+      </form>
+      <p id="formMessage" class="message" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading task-heading">
+        <div>
+          <h2>Your tasks</h2>
+          <p class="muted">All your saved tasks in one place.</p>
+        </div>
+        <select id="filterStatus" aria-label="Filter tasks by status">
+          <option value="All">All tasks</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+
+      <div id="loading" class="empty-state">Loading tasks...</div>
+      <div id="taskList" class="task-list"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">📝</div>
+        <h3>No tasks found</h3>
+        <p>Add a task above to get started.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Student Task Manager · Built with Cloudflare Workers, KV & Terraform</p>
+    </footer>
+  </main>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
